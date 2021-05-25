@@ -1,0 +1,28 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: APIGDemoAppECRRepository
+
+Resources:
+  APIGDemoAppECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: apig-demo-app
+      Tags:
+        - Key: "Name"
+          Value: "apig-demo-app"
+
+  APIGDemoAppBackendECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: solar-system-backend
+      Tags:
+        - Key: "Name"
+          Value: "solar-system-backend"
+
+  LambdaDeployBucket:
+    Type: AWS::S3::Bucket
+
+Outputs:
+  LambdaDeployBucketArn:
+    Description: "Lambda Deploy Bucket Arn"
+    Value: !GetAtt LambdaDeployBucket.Arn
